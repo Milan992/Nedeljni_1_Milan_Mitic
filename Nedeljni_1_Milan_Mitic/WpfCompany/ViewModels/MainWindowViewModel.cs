@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
+using WpfCompany.Views;
 
 namespace WpfCompany.ViewModels
 {
@@ -13,6 +15,7 @@ namespace WpfCompany.ViewModels
         public MainWindowViewModel(MainWindow mainOpen)
         {
             main = mainOpen;
+            service.GetManagerCode();
         }
 
         #endregion
@@ -72,7 +75,12 @@ namespace WpfCompany.ViewModels
         {
             try
             {
-               
+                ///master, zaposleni, sistem, tim i lokal admin, menadzer 1, 2 i 3 i mozda jos neki prozori
+                if (UserName == "WPFMaster" && Password == "WPFAccess")
+                {
+                    Master master = new Master();
+                    master.ShowDialog();
+                }
             }
             catch
             {
@@ -81,6 +89,38 @@ namespace WpfCompany.ViewModels
         }
 
         private bool CanLogInExecute()
+        {
+            return true;
+        }
+
+        private ICommand mewAccount;
+
+        public ICommand NewAccount
+        {
+            get
+            {
+                if (mewAccount == null)
+                {
+                    mewAccount = new RelayCommand(param => NewAccountExecute(), param => CanNewAccountExecute());
+                }
+
+                return mewAccount;
+            }
+        }
+
+        private void NewAccountExecute()
+        {
+            try
+            {
+               
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private bool CanNewAccountExecute()
         {
             return true;
         }
