@@ -81,10 +81,14 @@ namespace WpfCompany.ViewModels
                     Master master = new Master();
                     master.ShowDialog();
                 }
+                else
+                {
+                    MessageBox.Show("Username or password incorrect");
+                }
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("");
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -93,18 +97,18 @@ namespace WpfCompany.ViewModels
             return true;
         }
 
-        private ICommand mewAccount;
+        private ICommand newAccount;
 
         public ICommand NewAccount
         {
             get
             {
-                if (mewAccount == null)
+                if (newAccount == null)
                 {
-                    mewAccount = new RelayCommand(param => NewAccountExecute(), param => CanNewAccountExecute());
+                    newAccount = new RelayCommand(param => NewAccountExecute(), param => CanNewAccountExecute());
                 }
 
-                return mewAccount;
+                return newAccount;
             }
         }
 
@@ -112,7 +116,8 @@ namespace WpfCompany.ViewModels
         {
             try
             {
-               
+                AddAccount addAccount = new AddAccount();
+                addAccount.ShowDialog();
             }
             catch(Exception ex)
             {

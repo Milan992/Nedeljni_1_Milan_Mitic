@@ -157,3 +157,22 @@ ReportDate date,
 ReportDescription varchar(30),
 HoursWorking int
 )
+
+
+insert into tblMarrigeStatus (MarrigeStatusName)
+values ('married');
+
+insert into tblMarrigeStatus (MarrigeStatusName)
+values ('notMarried');
+
+insert into tblMarrigeStatus (MarrigeStatusName)
+values ('divorced');
+
+insert into tblAdministratorType(AdministratorTypeName)
+values ('team');
+
+insert into tblAdministratorType(AdministratorTypeName)
+values ('system');
+
+insert into tblAdministratorType(AdministratorTypeName)
+values ('local');

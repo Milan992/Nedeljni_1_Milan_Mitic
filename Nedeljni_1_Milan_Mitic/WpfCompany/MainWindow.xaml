@@ -44,5 +44,11 @@
                 Margin="130,195,0,0"
                 VerticalAlignment="Top"
                 Width="75" />
+        <Button Content="Register"
+                Command="{Binding NewAccount, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="130,195,0,0"
+                VerticalAlignment="Top"
+                Width="75" />
     </Grid>
 </Window>
