@@ -50,7 +50,7 @@ SectorDescription varchar(30)
 
 Create table tblPosition (
 PositionID int identity (1,1) primary key,
-PositionName varchar(10)
+PositionName varchar(10) unique
 )
 
 Create table tblClient (
@@ -92,7 +92,7 @@ EmployeeID int identity(1,1) primary key,
 AccountID int foreign key (AccountID) references tblAccount(AccountID) not null,
 ManagerID int foreign key (ManagerID) references tblManager(ManagerID) not null,
 SectorID int foreign key (SectorID) references tblSector(SectorID) not null,
-PositionID int foreign key (PositionID) references tblPosition(PositionID) not null,
+PositionID int foreign key (PositionID) references tblPosition(PositionID),
 EmploymentDate date not null,
 Salary int,
 QualificationsLevel varchar(3) check(QualificationsLevel in ('I', 'II', 'III', 'IV', 'V', 'VI', 'VII')) not null
@@ -176,3 +176,6 @@ values ('system');
 
 insert into tblAdministratorType(AdministratorTypeName)
 values ('local');
+
+insert into tblSector(SectorName)
+values ('default');

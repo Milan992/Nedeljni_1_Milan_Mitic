@@ -11,17 +11,26 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfCompany.Model;
+using WpfCompany.ViewModels;
 
 namespace WpfCompany.Views
 {
     /// <summary>
-    /// Interaction logic for AddAccount.xaml
+    /// Interaction logic for AddEmployee.xaml
     /// </summary>
-    public partial class AddAccount : Window
+    public partial class AddEmployee : Window
     {
-        public AddAccount()
+        public AddEmployee()
         {
             InitializeComponent();
+            this.DataContext = new AddEmployeeViewModel(this);
+        }
+
+        public AddEmployee(tblAccount account)
+        {
+            InitializeComponent();
+            this.DataContext = new AddEmployeeViewModel(this, account);
         }
     }
 }

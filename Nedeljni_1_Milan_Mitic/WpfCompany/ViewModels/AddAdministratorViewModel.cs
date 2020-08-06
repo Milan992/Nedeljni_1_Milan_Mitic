@@ -142,7 +142,14 @@ namespace WpfCompany.ViewModels
 
         private bool CanSaveExecute()
         {
-            return true;
+            if (marrigeType != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private ICommand close;

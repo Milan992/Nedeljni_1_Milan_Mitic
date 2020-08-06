@@ -116,8 +116,8 @@ namespace WpfCompany.ViewModels
         {
             try
             {
-                AddAccount addAccount = new AddAccount();
-                addAccount.ShowDialog();
+                Register register = new Register();
+                register.ShowDialog();
             }
             catch(Exception ex)
             {

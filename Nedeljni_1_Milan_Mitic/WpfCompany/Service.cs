@@ -31,6 +31,46 @@ namespace WpfCompany
         }
 
         /// <summary>
+        /// Gets all sectors from the database and adds them to the list.
+        /// </summary>
+        /// <returns></returns>
+        internal List<tblSector> GetAllSectors()
+        {
+            try
+            {
+                using (CompanyEntities context = new CompanyEntities())
+                {
+                    List<tblSector> list = (from a in context.tblSectors select a).ToList();
+                    return list;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets all positions from the database and adds them to the list.
+        /// </summary>
+        /// <returns></returns>
+        internal List<tblPosition> GetAllPositions()
+        {
+            try
+            {
+                using (CompanyEntities context = new CompanyEntities())
+                {
+                    List<tblPosition> list = (from a in context.tblPositions select a).ToList();
+                    return list;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Gets all administrator types from the database and adds them to the list.
         /// </summary>
         /// <returns></returns>
@@ -77,7 +117,7 @@ namespace WpfCompany
                 newAccount.Pass = account.Pass;
                 context.tblAccounts.Add(newAccount);
                 context.SaveChanges();
-
+            
                 tblAdministrator newAdmin = new tblAdministrator();
                 newAdmin.AccountID = newAccount.AccountID;
                 newAdmin.AdministratorTypeID = adminType.AdministratorTypeID;
@@ -85,6 +125,11 @@ namespace WpfCompany
                 context.tblAdministrators.Add(newAdmin);
                 context.SaveChanges();
             }
+        }
+
+        internal void AddEmployee(tblAccount account, tblSector sector, tblPosition position, int experience, string qualification)
+        {
+            throw new NotImplementedException();
         }
     }
 }
