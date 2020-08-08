@@ -232,7 +232,7 @@ namespace WpfCompany
         /// <param name="position"></param>
         /// <param name="experience"></param>
         /// <param name="qualification"></param>
-        internal void AddEmployee(tblAccount account, tblSector sector, tblPosition position, int experience, string qualification)
+        internal void AddEmployee(tblEmployee employee, tblAccount account, tblSector sector, tblPosition position, int experience)
         {
             int id = RandomManager();
             if (id != 0)
@@ -257,9 +257,10 @@ namespace WpfCompany
                     newEmployee.SectorID = sector.SectorID;
                     newEmployee.PositionID = position.PositionID;
                     newEmployee.EmploymentDate = DateTime.Now.AddYears(-experience);
-                    newEmployee.QualificationsLevel = qualification;
+                    newEmployee.QualificationsLevel = employee.QualificationsLevel;
                     context.tblEmployees.Add(newEmployee);
                     context.SaveChanges();
+                    MessageBox.Show("Employee saved.");
                 }
             }
             else
@@ -283,11 +284,11 @@ namespace WpfCompany
                     return id;
                 }
             }
-            catch 
+            catch
             {
                 return 0;
             }
         }
     }
-    }
+}
 

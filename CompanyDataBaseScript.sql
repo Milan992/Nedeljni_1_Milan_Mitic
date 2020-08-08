@@ -179,3 +179,6 @@ values ('local');
 
 insert into tblSector(SectorName)
 values ('default');
+
+insert into tblPosition(PositionName)
+values ('default');

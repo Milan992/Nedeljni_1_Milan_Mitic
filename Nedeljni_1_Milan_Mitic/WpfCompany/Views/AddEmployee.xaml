@@ -48,7 +48,7 @@
                  Width="120" />
         <ComboBox HorizontalAlignment="Left"
                   ItemsSource="{Binding QualificationsList, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding Qualification, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding Employee.QualificationsLevel, UpdateSourceTrigger=PropertyChanged}"
                   Margin="180,103,0,0"
                   VerticalAlignment="Top"
                   Width="120" />

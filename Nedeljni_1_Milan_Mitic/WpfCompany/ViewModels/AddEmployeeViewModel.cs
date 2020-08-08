@@ -92,19 +92,6 @@ namespace WpfCompany.ViewModels
             }
         }
 
-        private string qualification;
-
-        public string Qualification
-        {
-            get { return qualification; }
-            set
-            {
-                qualification = value;
-                OnPropertyChanged("Qualification");
-            }
-        }
-
-
         private tblPosition position;
 
         public tblPosition Position
@@ -176,8 +163,8 @@ namespace WpfCompany.ViewModels
         {
             try
             {
-                service.AddEmployee(Account, Sector, Position, Experience, Qualification);
-                MessageBox.Show("Employee saved.");
+                service.AddEmployee(Employee, Account, Sector, Position, Experience);
+                addEmployee.Close();
             }
             catch (Exception ex)
             {
@@ -187,41 +174,48 @@ namespace WpfCompany.ViewModels
 
         private bool CanSaveExecute()
         {
-            return true;
-        }
-
-        private ICommand close;
-
-        public ICommand Close
-        {
-            get
+            if (Sector != null && Position != null && Experience != null && Employee.QualificationsLevel != null)
             {
-                if (close == null)
-                {
-                    close = new RelayCommand(param => CloseExecute(), param => CanCloseExecute());
-                }
-
-                return close;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
-        private void CloseExecute()
-        {
-            try
-            {
-                addEmployee.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+    private ICommand close;
 
-        private bool CanCloseExecute()
+    public ICommand Close
+    {
+        get
         {
-            return true;
-        }
+            if (close == null)
+            {
+                close = new RelayCommand(param => CloseExecute(), param => CanCloseExecute());
+            }
 
-        #endregion
+            return close;
+        }
     }
+
+    private void CloseExecute()
+    {
+        try
+        {
+            addEmployee.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+        }
+    }
+
+    private bool CanCloseExecute()
+    {
+        return true;
+    }
+
+    #endregion
+}
 }

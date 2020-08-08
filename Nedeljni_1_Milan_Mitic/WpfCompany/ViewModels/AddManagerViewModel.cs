@@ -116,6 +116,7 @@ namespace WpfCompany.ViewModels
             {
                 service.AddManager(Manager, Account);
                 MessageBox.Show("Manager saved.");
+                addManager.Close();
             }
             catch (Exception ex)
             {

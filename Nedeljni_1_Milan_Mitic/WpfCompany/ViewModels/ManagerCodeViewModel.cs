@@ -88,6 +88,7 @@ namespace WpfCompany.ViewModels
                     MessageBox.Show("Code correct. Please procced to completing yor manager registration.");
                     AddManager addManager = new AddManager(AccountToView);
                     addManager.ShowDialog();
+                    managerCode.Close();
                 }
                 else
                 {

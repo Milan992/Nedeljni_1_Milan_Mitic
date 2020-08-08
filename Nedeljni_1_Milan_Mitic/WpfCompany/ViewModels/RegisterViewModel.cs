@@ -23,6 +23,7 @@ namespace WpfCompany.ViewModels
             account = new tblAccount();
             register = registerOpen;
             marrigeTypeList = service.GetAllMarrigeTypes();
+            genderList = new List<string> { "M", "Z", "N", "X" };
         }
 
         #endregion
@@ -82,6 +83,16 @@ namespace WpfCompany.ViewModels
             }
         }
 
+        private List<string> genderList;
+
+        public List<string> GenderList
+        {
+            get { return genderList; }
+            set
+            {
+                genderList = value; OnPropertyChanged("GenderList");
+            }
+        }
 
         #endregion
 
@@ -106,9 +117,9 @@ namespace WpfCompany.ViewModels
         {
             try
             {
+                Account.MarrigeStatusID = MarrigeType.MarrigeStatusID;
                 if (IsManager)
                 {
-                    Account.MarrigeStatusID = MarrigeType.MarrigeStatusID;
                     string sMessageBoxText = "Are you sure you want to register as a manager?";
                     string sCaption = "";
 
@@ -122,6 +133,7 @@ namespace WpfCompany.ViewModels
                         case MessageBoxResult.Yes:
                             ManagerCode managerCode = new ManagerCode(Account);
                             managerCode.ShowDialog();
+                            register.Close();
                             break;
 
                         case MessageBoxResult.No:
@@ -137,6 +149,7 @@ namespace WpfCompany.ViewModels
                 {
                     AddEmployee addEmployee = new AddEmployee(Account);
                     addEmployee.ShowDialog();
+                    register.Close();
                 }
             }
             catch (Exception ex)

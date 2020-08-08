@@ -67,13 +67,12 @@
                  Text="{Binding Account.JMBG, UpdateSourceTrigger=PropertyChanged}"
                  VerticalAlignment="Top"
                  Width="120" />
-        <TextBox HorizontalAlignment="Left"
-                 Height="23"
-                 Margin="180,103,0,0"
-                 TextWrapping="Wrap"
-                 Text="{Binding Account.Gender, UpdateSourceTrigger=PropertyChanged}"
-                 VerticalAlignment="Top"
-                 Width="120" />
+        <ComboBox HorizontalAlignment="Left"
+                  ItemsSource="{Binding GenderList, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding Account.Gender, UpdateSourceTrigger=PropertyChanged}"
+                  Margin="180,103,0,0"
+                  VerticalAlignment="Top"
+                  Width="120" />
         <TextBox HorizontalAlignment="Left"
                  Height="23"
                  Margin="180,133,0,0"
@@ -117,6 +116,5 @@
                 Margin="120,360,0,0"
                 VerticalAlignment="Top"
                 Width="75" />
-        <Label Content="- M, Z, N or X" HorizontalAlignment="Left" Margin="305,103,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

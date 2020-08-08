@@ -21,6 +21,7 @@ namespace WpfCompany.ViewModels
         {
             account = new tblAccount();
             administrator = new tblAdministrator();
+            genderList = new List<string> { "M", "Z", "N", "X" };
             marrigeTypeList = service.GetAllMarrigeTypes();
             AdminTypeList = service.GetAllAdminTypes();
             addAdministrator = addAdministratorOpen;
@@ -84,6 +85,17 @@ namespace WpfCompany.ViewModels
             }
         }
 
+        private List<string> genderList;
+
+        public List<string> GenderList
+        {
+            get { return genderList; }
+            set
+            {
+                genderList = value; OnPropertyChanged("GenderList");
+            }
+        }
+
         private tblMarrigeStatu marrigeType;
 
         public tblMarrigeStatu MarrigeType
@@ -133,6 +145,7 @@ namespace WpfCompany.ViewModels
             {
                 service.AddAdministrator(Administrator, Account, MarrigeType, AdminType);
                 MessageBox.Show("Administrator saved.");
+                addAdministrator.Close();
             }
             catch (Exception ex)
             {
