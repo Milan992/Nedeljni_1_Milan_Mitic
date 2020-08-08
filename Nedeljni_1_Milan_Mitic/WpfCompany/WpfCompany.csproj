@@ -127,6 +127,7 @@
     <Compile Include="ViewModels\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModels\AddManagerViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\ManagerCodeViewModel.cs" />
     <Compile Include="ViewModels\MasterViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -138,6 +139,9 @@
     </Compile>
     <Compile Include="Views\AddManager.xaml.cs">
       <DependentUpon>AddManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManagerCode.xaml.cs">
+      <DependentUpon>ManagerCode.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Master.xaml.cs">
       <DependentUpon>Master.xaml</DependentUpon>
@@ -166,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManagerCode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

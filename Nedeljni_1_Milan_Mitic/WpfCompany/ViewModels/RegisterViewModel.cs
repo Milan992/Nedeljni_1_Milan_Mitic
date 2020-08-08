@@ -22,6 +22,7 @@ namespace WpfCompany.ViewModels
         {
             account = new tblAccount();
             register = registerOpen;
+            marrigeTypeList = service.GetAllMarrigeTypes();
         }
 
         #endregion
@@ -42,6 +43,32 @@ namespace WpfCompany.ViewModels
                 OnPropertyChanged("Account");
             }
         }
+
+        private List<tblMarrigeStatu> marrigeTypeList;
+
+        public List<tblMarrigeStatu> MarrigeTypeList
+        {
+            get { return marrigeTypeList; }
+            set
+            {
+                marrigeTypeList = value;
+                OnPropertyChanged("MarrigeTypeList");
+            }
+        }
+
+
+        private tblMarrigeStatu marrigeType;
+
+        public tblMarrigeStatu MarrigeType
+        {
+            get { return marrigeType; }
+            set
+            {
+                marrigeType = value;
+                OnPropertyChanged("MarrigeType");
+            }
+        }
+
 
         private bool isManager;
 
@@ -81,8 +108,30 @@ namespace WpfCompany.ViewModels
             {
                 if (IsManager)
                 {
-                    AddManager addManager = new AddManager();
-                    addManager.ShowDialog();
+                    Account.MarrigeStatusID = MarrigeType.MarrigeStatusID;
+                    string sMessageBoxText = "Are you sure you want to register as a manager?";
+                    string sCaption = "";
+
+                    MessageBoxButton btnMessageBox = MessageBoxButton.YesNoCancel;
+                    MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
+
+                    MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
+
+                    switch (rsltMessageBox)
+                    {
+                        case MessageBoxResult.Yes:
+                            ManagerCode managerCode = new ManagerCode(Account);
+                            managerCode.ShowDialog();
+                            break;
+
+                        case MessageBoxResult.No:
+                            /* ... */
+                            break;
+
+                        case MessageBoxResult.Cancel:
+                            /* ... */
+                            break;
+                    }
                 }
                 else
                 {
@@ -98,7 +147,24 @@ namespace WpfCompany.ViewModels
 
         private bool CanSaveExecute()
         {
-            return true;
+            if (MarrigeType != null && Account.FirstName != null && Account.LastName != null
+                && Account.JMBG != null && Account.Gender != null && Account.FirstName != null
+                && Account.UserName != null && Account.Pass != null)
+            {
+                if (service.IsJmbg(Account.JMBG) && Account.FirstName != "" && Account.LastName != "" && Account.UserName.Length > 4
+                    && Account.UserName.Length > 5)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private ICommand close;

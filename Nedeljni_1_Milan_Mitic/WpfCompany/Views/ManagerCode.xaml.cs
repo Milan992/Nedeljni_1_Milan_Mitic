@@ -17,20 +17,20 @@ using WpfCompany.ViewModels;
 namespace WpfCompany.Views
 {
     /// <summary>
-    /// Interaction logic for AddManager.xaml
+    /// Interaction logic for ManagerCode.xaml
     /// </summary>
-    public partial class AddManager : Window
+    public partial class ManagerCode : Window
     {
-        public AddManager()
+        public ManagerCode()
         {
             InitializeComponent();
-            this.DataContext = new AddManagerViewModel(this);
+            this.DataContext = new ManagerCodeViewModel(this);
         }
 
-        public AddManager(tblAccount acountAdd)
+        public ManagerCode(tblAccount account)
         {
             InitializeComponent();
-            this.DataContext = new AddManagerViewModel(this, acountAdd);
+            this.DataContext = new ManagerCodeViewModel(this, account);
         }
     }
 }

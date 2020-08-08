@@ -5,8 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCompany.Views"
         mc:Ignorable="d"
-        Title="Add Manager" Height="450" Width="800">
+        Title="Add Manager"
+          Height="450"
+        Width="450">
     <Grid>
-        
+        <Label Content="E-mail:"
+               HorizontalAlignment="Left"
+               Margin="40,10,0,0"
+               VerticalAlignment="Top"
+               RenderTransformOrigin="-1.579,0.192" />
+        <Label Content="Password hint:"
+               HorizontalAlignment="Left"
+               Margin="40,40,0,0"
+               VerticalAlignment="Top" />
+        <Label Content="Office number:"
+               HorizontalAlignment="Left"
+               Margin="40,70,0,0"
+               VerticalAlignment="Top" />
+        <TextBox HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="180,13,0,0"
+                 TextWrapping="Wrap"
+                 Text="{Binding Manager.Email, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalAlignment="Top"
+                 Width="120" />
+        <TextBox HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="180,43,0,0"
+                 TextWrapping="Wrap"
+                 Text="{Binding Manager.SparePass, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalAlignment="Top"
+                 Width="120" />
+        <TextBox HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="180,73,0,0"
+                 TextWrapping="Wrap"
+                 Text="{Binding Manager.OfficeNumber, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalAlignment="Top"
+                 Width="120" />
+        <Button Content="Register"
+                Command="{Binding Save, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="40,360,0,0"
+                VerticalAlignment="Top"
+                Width="75"
+                RenderTransformOrigin="0.32,2.25" />
+        <Button Content="Close"
+                Command="{Binding Close, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="120,360,0,0"
+                VerticalAlignment="Top"
+                Width="75" />
     </Grid>
 </Window>

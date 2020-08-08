@@ -153,8 +153,6 @@ namespace WpfCompany.ViewModels
                 OnPropertyChanged("Experience");
             }
         }
-
-
         #endregion
 
         #region Commands

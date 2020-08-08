@@ -142,9 +142,19 @@ namespace WpfCompany.ViewModels
 
         private bool CanSaveExecute()
         {
-            if (marrigeType != null)
+            if (MarrigeType != null && Account.FirstName != null && Account.LastName != null
+                && Account.JMBG != null && Account.Gender != null && Account.FirstName != null
+                && Account.UserName != null && Account.Pass != null && AdminType != null)
             {
-                return true;
+                if (service.IsJmbg(Account.JMBG) && Account.FirstName != "" && Account.LastName != "" && Account.UserName.Length > 4
+                    && Account.UserName.Length > 5)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
