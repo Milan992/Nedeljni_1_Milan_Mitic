@@ -1,0 +1,40 @@
+﻿<Window x:Class="WpfCompany.Views.Employee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCompany.Views"
+        mc:Ignorable="d"
+        Title="Employee" Height="350" Width="450">
+    <Grid>
+
+        <Button Content="Fill daily report"
+                Command="{Binding FillReport, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,10,0,0"
+                VerticalAlignment="Top"
+                Width="120"
+                Height="33" />
+        <Button Content="Show your reports"
+                Command="{Binding ShowYourReports, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="150,10,0,0"
+                VerticalAlignment="Top"
+                Width="120"
+                Height="33" />
+        <Button Content="Update account"
+                Command="{Binding UpdateManager, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,50,0,0"
+                VerticalAlignment="Top"
+                Width="120"
+                Height="33" />
+        <Button Content="Show your projects"
+                Command="{Binding ShowYourProjects, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="150,50,0,0"
+                VerticalAlignment="Top"
+                Width="120" 
+                Height="33"/>
+    </Grid>
+</Window>

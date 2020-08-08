@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using WpfCompany.Model;
 using WpfCompany.Views;
 
 namespace WpfCompany.ViewModels
@@ -81,12 +82,33 @@ namespace WpfCompany.ViewModels
                     Master master = new Master();
                     master.ShowDialog();
                 }
+                else if(service.IsEmployee(UserName, Password)) 
+                {
+                    tblAccount a = service.GetAccount(UserName);
+                    tblEmployee e = service.GetEmployee(UserName, Password);
+                    Employee employee = new Employee(a, e);
+                    employee.ShowDialog();
+                }
+                else if (service.IsManager(UserName, Password))
+                {
+                    tblAccount a = service.GetAccount(UserName);
+                    tblManager m = service.GetManager(userName);
+                    Manager manager = new Manager(a, m);
+                    manager.ShowDialog();
+                }
+                else if (service.IsAdmin(UserName, Password))
+                {
+                    tblAccount a = service.GetAccount(UserName);
+                    tblAdministrator ad = service.GetAdmin(UserName, Password);
+                    Admin admin = new Admin(a, ad);
+                    admin.ShowDialog();
+                }
                 else
                 {
                     MessageBox.Show("Username or password incorrect");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -119,7 +141,7 @@ namespace WpfCompany.ViewModels
                 Register register = new Register();
                 register.ShowDialog();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }

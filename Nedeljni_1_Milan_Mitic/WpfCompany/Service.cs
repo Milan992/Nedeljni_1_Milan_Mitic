@@ -60,6 +60,145 @@ namespace WpfCompany
         }
 
         /// <summary>
+        /// Checks if employee with the username and pass exists in tblEmployee in the database.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        internal bool IsEmployee(string userName, string password)
+        {
+            try
+            {
+                using (CompanyEntities context = new CompanyEntities())
+                {
+                    tblAccount account = GetAccount(userName, password);
+                    tblEmployee employee = (from e in context.tblEmployees where e.AccountID == account.AccountID select e).First();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        internal tblEmployee GetEmployee(string userName, string password)
+        {
+            using (CompanyEntities context = new CompanyEntities())
+            {
+                tblAccount account = GetAccount(userName, password);
+                tblEmployee employee = (from e in context.tblEmployees where e.AccountID == account.AccountID select e).First();
+                return employee;
+            }
+        }
+
+        /// <summary>
+        /// Returns an account with the userName and Pass from tblAccount in the database.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public tblAccount GetAccount(string userName, string password)
+        {
+            using (CompanyEntities context = new CompanyEntities())
+            {
+                tblAccount account = (from a in context.tblAccounts where a.UserName == userName && a.Pass == password select a).First();
+                return account;
+            }
+        }
+
+        /// <summary>
+        /// Returns an account with the userName and Pass from tblAccount in the database.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public tblAccount GetAccount(string userName)
+        {
+            using (CompanyEntities context = new CompanyEntities())
+            {
+                tblAccount account = (from a in context.tblAccounts where a.UserName == userName select a).First();
+                return account;
+            }
+        }
+
+        /// <summary>
+        /// Checks if manager with the username and pass exists in tblManager in the database.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        internal bool IsManager(string userName, string password)
+        {
+            try
+            {
+                tblAccount account = new tblAccount();
+                tblManager manager = new tblManager();
+                using (CompanyEntities context = new CompanyEntities())
+                {
+                    try
+                    {
+                        account = GetAccount(userName, password);
+                    }
+                    catch
+                    {
+                        account = (from a in context.tblAccounts where a.UserName == userName select a).First();
+                        manager = (from e in context.tblManagers where e.SparePass == password select e).First();
+                    }
+                    manager = (from e in context.tblManagers where e.AccountID == account.AccountID select e).First();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        internal tblManager GetManager(string userName)
+        {
+            using (CompanyEntities context = new CompanyEntities())
+            {
+                tblAccount account = (from a in context.tblAccounts where a.UserName == userName select a).First();
+                tblManager manager = (from e in context.tblManagers where e.AccountID == account.AccountID select e).First();
+                return manager;
+            }
+        }
+
+        /// <summary>
+        /// Checks if admin with the username and pass exists in tblAdministrator in the database.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        internal bool IsAdmin(string userName, string password)
+        {
+            try
+            {
+                using (CompanyEntities context = new CompanyEntities())
+                {
+                    tblAccount account = GetAccount(userName, password);
+                    tblAdministrator admin = (from e in context.tblAdministrators where e.AccountID == account.AccountID select e).First();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        internal tblAdministrator GetAdmin(string userName, string password)
+        {
+            using (CompanyEntities context = new CompanyEntities())
+            {
+                tblAccount account = GetAccount(userName, password);
+                tblAdministrator admin = (from e in context.tblAdministrators where e.AccountID == account.AccountID select e).First();
+                return admin;
+            }
+        }
+
+        /// <summary>
         /// Gets all sectors from the database and adds them to the list.
         /// </summary>
         /// <returns></returns>
@@ -273,7 +412,6 @@ namespace WpfCompany
         {
             try
             {
-
                 using (CompanyEntities context = new CompanyEntities())
                 {
                     List<tblManager> list = (from m in context.tblManagers select m).ToList();
