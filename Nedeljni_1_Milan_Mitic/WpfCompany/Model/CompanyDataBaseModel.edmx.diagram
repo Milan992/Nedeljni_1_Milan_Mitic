@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="93d807776db94bf186323fb89b3e2524" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="CompanyModel.tblAccount" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblAdministrator" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblAdministratorType" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblClient" Width="1.5" PointX="5.25" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblDailyReport" Width="1.5" PointX="9.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblEmployee" Width="1.5" PointX="7.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblEmployeeEdit" Width="1.5" PointX="10.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblManager" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblMarrigeStatu" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblPosition" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblProject" Width="1.5" PointX="7.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblRequest" Width="1.5" PointX="5.25" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblSector" Width="1.5" PointX="5.25" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.tblDailyReportByProject" Width="1.5" PointX="12" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyModel.vwManager" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="CompanyModel.FK__tblAccoun__Marri__5AAF56EE" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblAdmini__Accou__7286E07F" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblEmploy__Accou__652CE561" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblEmploy__Accou__6BD9E2F0" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblManage__Accou__60683044" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblReques__Accou__76577163" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblAdmini__Admin__737B04B8" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblProjec__Clien__7A280247" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblDailyR__Daily__0599B4F3" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblDailyR__Emplo__02BD4848" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblEmploy__Manag__6621099A" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblEmploy__Posit__6809520C" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblEmploy__Secto__67152DD3" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblEmploy__Manag__6CCE0729" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblEmploy__Posit__6EB64F9B" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblEmploy__Secto__6DC22B62" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblProjec__Manag__7B1C2680" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblProjec__Manag__7D046EF2" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.FK__tblDailyR__Proje__068DD92C" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyModel.tblEmployeeOnProject" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
