@@ -76,7 +76,6 @@ namespace WpfCompany.ViewModels
         {
             try
             {
-                ///master, zaposleni, sistem, tim i lokal admin, menadzer 1, 2 i 3 i mozda jos neki prozori
                 if (UserName == "WPFMaster" && Password == "WPFAccess")
                 {
                     Master master = new Master();
