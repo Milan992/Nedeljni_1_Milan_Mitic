@@ -41,6 +41,56 @@ namespace WpfCompany
         }
 
         /// <summary>
+        /// Gets all managers from database and adds them to a list.
+        /// </summary>
+        /// <returns></returns>
+        internal List<vwManager> GetAllManagers()
+        {
+            try
+            {
+                using (CompanyEntities context = new CompanyEntities())
+                {
+                    List<vwManager> list = (from m in context.vwManagers select m).ToList();
+                    return list;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("There are no registered managers yet");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Changes manager's responsibility level
+        /// </summary>
+        /// <param name="manager"></param>
+        internal void UpdateResponsibility(vwManager manager)
+        {
+            using (CompanyEntities context = new CompanyEntities())
+            {
+                tblManager managerToEdit = (from m in context.tblManagers where m.ManagerID == manager.ManagerID select m).First();
+                if (managerToEdit.ResponsibilityLevel == null)
+                {
+                    managerToEdit.ResponsibilityLevel = 1;
+                }
+                else if (managerToEdit.ResponsibilityLevel == 1)
+                {
+                    managerToEdit.ResponsibilityLevel = 2;
+                }
+                else if (managerToEdit.ResponsibilityLevel == 2)
+                {
+                    managerToEdit.ResponsibilityLevel = 3;
+                }
+                else if (managerToEdit.ResponsibilityLevel == 3)
+                {
+                    managerToEdit.ResponsibilityLevel = null;
+                }
+                context.SaveChanges();
+            }
+        }
+
+        /// <summary>
         /// Generates a random number and writes it to a txt file.
         /// </summary>
         internal void GetManagerCode()

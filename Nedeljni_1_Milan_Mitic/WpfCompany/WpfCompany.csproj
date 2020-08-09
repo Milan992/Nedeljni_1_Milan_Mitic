@@ -121,6 +121,9 @@
     <Compile Include="Model\tblSector.cs">
       <DependentUpon>CompanyDataBaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\vwManager.cs">
+      <DependentUpon>CompanyDataBaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="ViewModels\AddAdministratorViewModel.cs" />
@@ -133,6 +136,7 @@
     <Compile Include="ViewModels\ManagerViewModel.cs" />
     <Compile Include="ViewModels\MasterViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\UpdateManagerResponsibilityLevelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddAdministrator.xaml.cs">
       <DependentUpon>AddAdministrator.xaml</DependentUpon>
@@ -160,6 +164,9 @@
     </Compile>
     <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateManagerResponsibilityLevel.xaml.cs">
+      <DependentUpon>UpdateManagerResponsibilityLevel.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -209,6 +216,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UpdateManagerResponsibilityLevel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -245,12 +256,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\CompanyDataBaseModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CompanyDataBaseModel.Context.cs</LastGenOutput>
       <DependentUpon>CompanyDataBaseModel.edmx</DependentUpon>
+      <LastGenOutput>CompanyDataBaseModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\CompanyDataBaseModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

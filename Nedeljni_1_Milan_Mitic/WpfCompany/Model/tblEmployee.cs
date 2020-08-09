@@ -24,7 +24,7 @@ namespace WpfCompany.Model
         public int AccountID { get; set; }
         public int ManagerID { get; set; }
         public int SectorID { get; set; }
-        public int PositionID { get; set; }
+        public Nullable<int> PositionID { get; set; }
         public System.DateTime EmploymentDate { get; set; }
         public Nullable<int> Salary { get; set; }
         public string QualificationsLevel { get; set; }

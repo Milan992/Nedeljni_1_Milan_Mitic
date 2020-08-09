@@ -1,0 +1,67 @@
+﻿<Window x:Class="WpfCompany.Views.UpdateManagerResponsibilityLevel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCompany.Views"
+        mc:Ignorable="d"
+        Title="UpdateManagerResponsibilityLevel" Height="450" Width="auto">
+    <Grid>
+        <DataGrid 
+            HorizontalAlignment="Left" Height="auto"
+                Margin="10,10,0,0" VerticalAlignment="Top"
+                Width="auto"
+                SelectedItem="{Binding Manager}"
+                ItemsSource="{Binding ManagerList}" 
+               AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Header="Manager ID" 
+                    Binding="{Binding Path=ManagerID}"/>
+                <DataGridTextColumn 
+                    Header="Account ID" 
+                    Binding="{Binding Path=AccountID}"/>
+                <DataGridTextColumn 
+                    Header="First name" 
+                    Binding="{Binding Path=FirstName}"/>
+                <DataGridTextColumn 
+                    Header="Last Name" 
+                    Binding="{Binding Path=LastName}"/>
+                <DataGridTextColumn 
+                    Header="JMBG" 
+                    Binding="{Binding Path=JMBG}"/>
+                <DataGridTextColumn 
+                    Header="Gender" 
+                    Binding="{Binding Path=Gender}"/>
+                <DataGridTextColumn 
+                    Header="City" 
+                    Binding="{Binding Path=City}"/>
+                <DataGridTextColumn 
+                    Header="User name" 
+                    Binding="{Binding Path=UserName}"/>
+                <DataGridTextColumn 
+                    Header="e-mail" 
+                    Binding="{Binding Path=Email}"/>
+                <DataGridTextColumn 
+                    Header="Responsibility level" 
+                    Binding="{Binding Path=ResponsibilityLevel}"/>
+                <DataGridTextColumn 
+                    Header="Realized projects" 
+                    Binding="{Binding Path=NumberOfRealizations}"/>
+                <DataGridTextColumn 
+                    Header="Salary" 
+                    Binding="{Binding Path=Salaty}"/>
+                <DataGridTextColumn 
+                    Header="Office" 
+                    Binding="{Binding Path=OfficeNumber}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Change responsibility level" 
+                HorizontalAlignment="Left" 
+                Margin="10,389,0,0" 
+                VerticalAlignment="Top" Width="150"
+                Command="{Binding UpdateResponsibility}"
+                />
+
+    </Grid>
+</Window>

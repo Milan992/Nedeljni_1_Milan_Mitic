@@ -72,7 +72,7 @@ warning 6002: The table/view 'Company.dbo.tblDailyReportByProject' does not have
           <Property Name="AccountID" Type="int" Nullable="false" />
           <Property Name="ManagerID" Type="int" Nullable="false" />
           <Property Name="SectorID" Type="int" Nullable="false" />
-          <Property Name="PositionID" Type="int" Nullable="false" />
+          <Property Name="PositionID" Type="int" />
           <Property Name="EmploymentDate" Type="date" Nullable="false" />
           <Property Name="Salary" Type="int" />
           <Property Name="QualificationsLevel" Type="varchar" MaxLength="3" Nullable="false" />
@@ -161,7 +161,33 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           <Property Name="SectorName" Type="varchar" MaxLength="10" />
           <Property Name="SectorDescription" Type="varchar" MaxLength="30" />
         </EntityType>
-        <Association Name="FK__tblAccoun__Marri__61BB7BD9">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Company.dbo.vwManager' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwManager">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+            <PropertyRef Name="AccountID" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="JMBG" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="ManagerID" Type="int" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="JMBG" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="30" />
+          <Property Name="UserName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="ResponsibilityLevel" Type="int" />
+          <Property Name="NumberOfRealizations" Type="int" />
+          <Property Name="Salaty" Type="int" />
+          <Property Name="OfficeNumber" Type="int" />
+        </EntityType>
+        <Association Name="FK__tblAccoun__Marri__5AAF56EE">
           <End Role="tblMarrigeStatus" Type="Self.tblMarrigeStatus" Multiplicity="1" />
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="*" />
           <ReferentialConstraint>
@@ -173,7 +199,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblAdmini__Accou__7993056A">
+        <Association Name="FK__tblAdmini__Accou__7286E07F">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="0..1" />
           <End Role="tblAdministrator" Type="Self.tblAdministrator" Multiplicity="*" />
           <ReferentialConstraint>
@@ -185,7 +211,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblAdmini__Admin__7A8729A3">
+        <Association Name="FK__tblAdmini__Admin__737B04B8">
           <End Role="tblAdministratorType" Type="Self.tblAdministratorType" Multiplicity="0..1" />
           <End Role="tblAdministrator" Type="Self.tblAdministrator" Multiplicity="*" />
           <ReferentialConstraint>
@@ -197,7 +223,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblDailyR__Daily__0CA5D9DE">
+        <Association Name="FK__tblDailyR__Daily__0599B4F3">
           <End Role="tblDailyReport" Type="Self.tblDailyReport" Multiplicity="1" />
           <End Role="tblDailyReportByProject" Type="Self.tblDailyReportByProject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -209,7 +235,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblDailyR__Emplo__09C96D33">
+        <Association Name="FK__tblDailyR__Emplo__02BD4848">
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="1" />
           <End Role="tblDailyReport" Type="Self.tblDailyReport" Multiplicity="*" />
           <ReferentialConstraint>
@@ -221,7 +247,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblDailyR__Proje__0D99FE17">
+        <Association Name="FK__tblDailyR__Proje__068DD92C">
           <End Role="tblProject" Type="Self.tblProject" Multiplicity="1" />
           <End Role="tblDailyReportByProject" Type="Self.tblDailyReportByProject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -233,19 +259,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Accou__05F8DC4F">
-          <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="1" />
-          <End Role="tblEmployeeOnProject" Type="Self.tblEmployeeOnProject" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblAccount">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="tblEmployeeOnProject">
-              <PropertyRef Name="AccountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tblEmploy__Accou__6C390A4C">
+        <Association Name="FK__tblEmploy__Accou__652CE561">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -257,7 +271,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Accou__72E607DB">
+        <Association Name="FK__tblEmploy__Accou__6BD9E2F0">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="0..1" />
           <End Role="tblEmployeeEdit" Type="Self.tblEmployeeEdit" Multiplicity="*" />
           <ReferentialConstraint>
@@ -269,7 +283,19 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Manag__6D2D2E85">
+        <Association Name="FK__tblEmploy__Accou__7EECB764">
+          <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="1" />
+          <End Role="tblEmployeeOnProject" Type="Self.tblEmployeeOnProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="tblEmployeeOnProject">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblEmploy__Manag__6621099A">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -281,7 +307,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Manag__73DA2C14">
+        <Association Name="FK__tblEmploy__Manag__6CCE0729">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="0..1" />
           <End Role="tblEmployeeEdit" Type="Self.tblEmployeeEdit" Multiplicity="*" />
           <ReferentialConstraint>
@@ -293,8 +319,8 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Posit__6F1576F7">
-          <End Role="tblPosition" Type="Self.tblPosition" Multiplicity="1" />
+        <Association Name="FK__tblEmploy__Posit__6809520C">
+          <End Role="tblPosition" Type="Self.tblPosition" Multiplicity="0..1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblPosition">
@@ -305,7 +331,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Posit__75C27486">
+        <Association Name="FK__tblEmploy__Posit__6EB64F9B">
           <End Role="tblPosition" Type="Self.tblPosition" Multiplicity="0..1" />
           <End Role="tblEmployeeEdit" Type="Self.tblEmployeeEdit" Multiplicity="*" />
           <ReferentialConstraint>
@@ -317,7 +343,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Proje__06ED0088">
+        <Association Name="FK__tblEmploy__Proje__7FE0DB9D">
           <End Role="tblProject" Type="Self.tblProject" Multiplicity="1" />
           <End Role="tblEmployeeOnProject" Type="Self.tblEmployeeOnProject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -329,7 +355,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Secto__6E2152BE">
+        <Association Name="FK__tblEmploy__Secto__67152DD3">
           <End Role="tblSector" Type="Self.tblSector" Multiplicity="1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -341,7 +367,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Secto__74CE504D">
+        <Association Name="FK__tblEmploy__Secto__6DC22B62">
           <End Role="tblSector" Type="Self.tblSector" Multiplicity="0..1" />
           <End Role="tblEmployeeEdit" Type="Self.tblEmployeeEdit" Multiplicity="*" />
           <ReferentialConstraint>
@@ -353,7 +379,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblManage__Accou__6774552F">
+        <Association Name="FK__tblManage__Accou__60683044">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="1" />
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="*" />
           <ReferentialConstraint>
@@ -365,7 +391,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblProjec__Clien__01342732">
+        <Association Name="FK__tblProjec__Clien__7A280247">
           <End Role="tblClient" Type="Self.tblClient" Multiplicity="1" />
           <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -377,7 +403,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblProjec__Manag__02284B6B">
+        <Association Name="FK__tblProjec__Manag__7B1C2680">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="1" />
           <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -389,7 +415,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblProjec__Manag__041093DD">
+        <Association Name="FK__tblProjec__Manag__7D046EF2">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="1" />
           <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -401,7 +427,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblReques__Accou__7D63964E">
+        <Association Name="FK__tblReques__Accou__76577163">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="1" />
           <End Role="tblRequest" Type="Self.tblRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -442,87 +468,104 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
     [tblEmployeeOnProject].[ProjectID] AS [ProjectID]
     FROM [dbo].[tblEmployeeOnProject] AS [tblEmployeeOnProject]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__tblAccoun__Marri__61BB7BD9" Association="Self.FK__tblAccoun__Marri__61BB7BD9">
+          <EntitySet Name="vwManager" EntityType="Self.vwManager" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwManager].[ManagerID] AS [ManagerID], 
+    [vwManager].[AccountID] AS [AccountID], 
+    [vwManager].[FirstName] AS [FirstName], 
+    [vwManager].[LastName] AS [LastName], 
+    [vwManager].[JMBG] AS [JMBG], 
+    [vwManager].[Gender] AS [Gender], 
+    [vwManager].[City] AS [City], 
+    [vwManager].[UserName] AS [UserName], 
+    [vwManager].[Email] AS [Email], 
+    [vwManager].[ResponsibilityLevel] AS [ResponsibilityLevel], 
+    [vwManager].[NumberOfRealizations] AS [NumberOfRealizations], 
+    [vwManager].[Salaty] AS [Salaty], 
+    [vwManager].[OfficeNumber] AS [OfficeNumber]
+    FROM [dbo].[vwManager] AS [vwManager]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__tblAccoun__Marri__5AAF56EE" Association="Self.FK__tblAccoun__Marri__5AAF56EE">
             <End Role="tblMarrigeStatus" EntitySet="tblMarrigeStatus" />
             <End Role="tblAccount" EntitySet="tblAccount" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblAdmini__Accou__7993056A" Association="Self.FK__tblAdmini__Accou__7993056A">
+          <AssociationSet Name="FK__tblAdmini__Accou__7286E07F" Association="Self.FK__tblAdmini__Accou__7286E07F">
             <End Role="tblAccount" EntitySet="tblAccount" />
             <End Role="tblAdministrator" EntitySet="tblAdministrator" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblAdmini__Admin__7A8729A3" Association="Self.FK__tblAdmini__Admin__7A8729A3">
+          <AssociationSet Name="FK__tblAdmini__Admin__737B04B8" Association="Self.FK__tblAdmini__Admin__737B04B8">
             <End Role="tblAdministratorType" EntitySet="tblAdministratorType" />
             <End Role="tblAdministrator" EntitySet="tblAdministrator" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblDailyR__Daily__0CA5D9DE" Association="Self.FK__tblDailyR__Daily__0CA5D9DE">
+          <AssociationSet Name="FK__tblDailyR__Daily__0599B4F3" Association="Self.FK__tblDailyR__Daily__0599B4F3">
             <End Role="tblDailyReport" EntitySet="tblDailyReport" />
             <End Role="tblDailyReportByProject" EntitySet="tblDailyReportByProject" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblDailyR__Emplo__09C96D33" Association="Self.FK__tblDailyR__Emplo__09C96D33">
+          <AssociationSet Name="FK__tblDailyR__Emplo__02BD4848" Association="Self.FK__tblDailyR__Emplo__02BD4848">
             <End Role="tblEmployee" EntitySet="tblEmployee" />
             <End Role="tblDailyReport" EntitySet="tblDailyReport" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblDailyR__Proje__0D99FE17" Association="Self.FK__tblDailyR__Proje__0D99FE17">
+          <AssociationSet Name="FK__tblDailyR__Proje__068DD92C" Association="Self.FK__tblDailyR__Proje__068DD92C">
             <End Role="tblProject" EntitySet="tblProject" />
             <End Role="tblDailyReportByProject" EntitySet="tblDailyReportByProject" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Accou__05F8DC4F" Association="Self.FK__tblEmploy__Accou__05F8DC4F">
+          <AssociationSet Name="FK__tblEmploy__Accou__652CE561" Association="Self.FK__tblEmploy__Accou__652CE561">
+            <End Role="tblAccount" EntitySet="tblAccount" />
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblEmploy__Accou__6BD9E2F0" Association="Self.FK__tblEmploy__Accou__6BD9E2F0">
+            <End Role="tblAccount" EntitySet="tblAccount" />
+            <End Role="tblEmployeeEdit" EntitySet="tblEmployeeEdit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblEmploy__Accou__7EECB764" Association="Self.FK__tblEmploy__Accou__7EECB764">
             <End Role="tblAccount" EntitySet="tblAccount" />
             <End Role="tblEmployeeOnProject" EntitySet="tblEmployeeOnProject" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Accou__6C390A4C" Association="Self.FK__tblEmploy__Accou__6C390A4C">
-            <End Role="tblAccount" EntitySet="tblAccount" />
-            <End Role="tblEmployee" EntitySet="tblEmployee" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Accou__72E607DB" Association="Self.FK__tblEmploy__Accou__72E607DB">
-            <End Role="tblAccount" EntitySet="tblAccount" />
-            <End Role="tblEmployeeEdit" EntitySet="tblEmployeeEdit" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Manag__6D2D2E85" Association="Self.FK__tblEmploy__Manag__6D2D2E85">
+          <AssociationSet Name="FK__tblEmploy__Manag__6621099A" Association="Self.FK__tblEmploy__Manag__6621099A">
             <End Role="tblManager" EntitySet="tblManager" />
             <End Role="tblEmployee" EntitySet="tblEmployee" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Manag__73DA2C14" Association="Self.FK__tblEmploy__Manag__73DA2C14">
+          <AssociationSet Name="FK__tblEmploy__Manag__6CCE0729" Association="Self.FK__tblEmploy__Manag__6CCE0729">
             <End Role="tblManager" EntitySet="tblManager" />
             <End Role="tblEmployeeEdit" EntitySet="tblEmployeeEdit" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Posit__6F1576F7" Association="Self.FK__tblEmploy__Posit__6F1576F7">
+          <AssociationSet Name="FK__tblEmploy__Posit__6809520C" Association="Self.FK__tblEmploy__Posit__6809520C">
             <End Role="tblPosition" EntitySet="tblPosition" />
             <End Role="tblEmployee" EntitySet="tblEmployee" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Posit__75C27486" Association="Self.FK__tblEmploy__Posit__75C27486">
+          <AssociationSet Name="FK__tblEmploy__Posit__6EB64F9B" Association="Self.FK__tblEmploy__Posit__6EB64F9B">
             <End Role="tblPosition" EntitySet="tblPosition" />
             <End Role="tblEmployeeEdit" EntitySet="tblEmployeeEdit" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Proje__06ED0088" Association="Self.FK__tblEmploy__Proje__06ED0088">
+          <AssociationSet Name="FK__tblEmploy__Proje__7FE0DB9D" Association="Self.FK__tblEmploy__Proje__7FE0DB9D">
             <End Role="tblProject" EntitySet="tblProject" />
             <End Role="tblEmployeeOnProject" EntitySet="tblEmployeeOnProject" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Secto__6E2152BE" Association="Self.FK__tblEmploy__Secto__6E2152BE">
+          <AssociationSet Name="FK__tblEmploy__Secto__67152DD3" Association="Self.FK__tblEmploy__Secto__67152DD3">
             <End Role="tblSector" EntitySet="tblSector" />
             <End Role="tblEmployee" EntitySet="tblEmployee" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Secto__74CE504D" Association="Self.FK__tblEmploy__Secto__74CE504D">
+          <AssociationSet Name="FK__tblEmploy__Secto__6DC22B62" Association="Self.FK__tblEmploy__Secto__6DC22B62">
             <End Role="tblSector" EntitySet="tblSector" />
             <End Role="tblEmployeeEdit" EntitySet="tblEmployeeEdit" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblManage__Accou__6774552F" Association="Self.FK__tblManage__Accou__6774552F">
+          <AssociationSet Name="FK__tblManage__Accou__60683044" Association="Self.FK__tblManage__Accou__60683044">
             <End Role="tblAccount" EntitySet="tblAccount" />
             <End Role="tblManager" EntitySet="tblManager" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblProjec__Clien__01342732" Association="Self.FK__tblProjec__Clien__01342732">
+          <AssociationSet Name="FK__tblProjec__Clien__7A280247" Association="Self.FK__tblProjec__Clien__7A280247">
             <End Role="tblClient" EntitySet="tblClient" />
             <End Role="tblProject" EntitySet="tblProject" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblProjec__Manag__02284B6B" Association="Self.FK__tblProjec__Manag__02284B6B">
+          <AssociationSet Name="FK__tblProjec__Manag__7B1C2680" Association="Self.FK__tblProjec__Manag__7B1C2680">
             <End Role="tblManager" EntitySet="tblManager" />
             <End Role="tblProject" EntitySet="tblProject" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblProjec__Manag__041093DD" Association="Self.FK__tblProjec__Manag__041093DD">
+          <AssociationSet Name="FK__tblProjec__Manag__7D046EF2" Association="Self.FK__tblProjec__Manag__7D046EF2">
             <End Role="tblManager" EntitySet="tblManager" />
             <End Role="tblProject" EntitySet="tblProject" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblReques__Accou__7D63964E" Association="Self.FK__tblReques__Accou__7D63964E">
+          <AssociationSet Name="FK__tblReques__Accou__76577163" Association="Self.FK__tblReques__Accou__76577163">
             <End Role="tblAccount" EntitySet="tblAccount" />
             <End Role="tblRequest" EntitySet="tblRequest" />
           </AssociationSet>
@@ -545,12 +588,12 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           <Property Name="MarrigeStatusID" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Pass" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblMarrigeStatu" Relationship="Self.FK__tblAccoun__Marri__61BB7BD9" FromRole="tblAccount" ToRole="tblMarrigeStatus" />
-          <NavigationProperty Name="tblAdministrators" Relationship="Self.FK__tblAdmini__Accou__7993056A" FromRole="tblAccount" ToRole="tblAdministrator" />
-          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Accou__6C390A4C" FromRole="tblAccount" ToRole="tblEmployee" />
-          <NavigationProperty Name="tblEmployeeEdits" Relationship="Self.FK__tblEmploy__Accou__72E607DB" FromRole="tblAccount" ToRole="tblEmployeeEdit" />
-          <NavigationProperty Name="tblManagers" Relationship="Self.FK__tblManage__Accou__6774552F" FromRole="tblAccount" ToRole="tblManager" />
-          <NavigationProperty Name="tblRequests" Relationship="Self.FK__tblReques__Accou__7D63964E" FromRole="tblAccount" ToRole="tblRequest" />
+          <NavigationProperty Name="tblMarrigeStatu" Relationship="Self.FK__tblAccoun__Marri__5AAF56EE" FromRole="tblAccount" ToRole="tblMarrigeStatus" />
+          <NavigationProperty Name="tblAdministrators" Relationship="Self.FK__tblAdmini__Accou__7286E07F" FromRole="tblAccount" ToRole="tblAdministrator" />
+          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Accou__652CE561" FromRole="tblAccount" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEmployeeEdits" Relationship="Self.FK__tblEmploy__Accou__6BD9E2F0" FromRole="tblAccount" ToRole="tblEmployeeEdit" />
+          <NavigationProperty Name="tblManagers" Relationship="Self.FK__tblManage__Accou__60683044" FromRole="tblAccount" ToRole="tblManager" />
+          <NavigationProperty Name="tblRequests" Relationship="Self.FK__tblReques__Accou__76577163" FromRole="tblAccount" ToRole="tblRequest" />
           <NavigationProperty Name="tblProjects" Relationship="Self.tblEmployeeOnProject" FromRole="tblAccount" ToRole="tblProject" />
         </EntityType>
         <EntityType Name="tblAdministrator">
@@ -561,8 +604,8 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           <Property Name="AccountID" Type="Int32" />
           <Property Name="DateOfExpiry" Type="DateTime" Precision="0" />
           <Property Name="AdministratorTypeID" Type="Int32" />
-          <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblAdmini__Accou__7993056A" FromRole="tblAdministrator" ToRole="tblAccount" />
-          <NavigationProperty Name="tblAdministratorType" Relationship="Self.FK__tblAdmini__Admin__7A8729A3" FromRole="tblAdministrator" ToRole="tblAdministratorType" />
+          <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblAdmini__Accou__7286E07F" FromRole="tblAdministrator" ToRole="tblAccount" />
+          <NavigationProperty Name="tblAdministratorType" Relationship="Self.FK__tblAdmini__Admin__737B04B8" FromRole="tblAdministrator" ToRole="tblAdministratorType" />
         </EntityType>
         <EntityType Name="tblAdministratorType">
           <Key>
@@ -570,7 +613,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           </Key>
           <Property Name="AdministratorTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AdministratorTypeName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblAdministrators" Relationship="Self.FK__tblAdmini__Admin__7A8729A3" FromRole="tblAdministratorType" ToRole="tblAdministrator" />
+          <NavigationProperty Name="tblAdministrators" Relationship="Self.FK__tblAdmini__Admin__737B04B8" FromRole="tblAdministratorType" ToRole="tblAdministrator" />
         </EntityType>
         <EntityType Name="tblClient">
           <Key>
@@ -578,7 +621,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           </Key>
           <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClientName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblProjects" Relationship="Self.FK__tblProjec__Clien__01342732" FromRole="tblClient" ToRole="tblProject" />
+          <NavigationProperty Name="tblProjects" Relationship="Self.FK__tblProjec__Clien__7A280247" FromRole="tblClient" ToRole="tblProject" />
         </EntityType>
         <EntityType Name="tblDailyReport">
           <Key>
@@ -588,8 +631,8 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="ReportDate" Type="DateTime" Precision="0" />
           <Property Name="HoursWorking" Type="Int32" />
-          <NavigationProperty Name="tblDailyReportByProjects" Relationship="Self.FK__tblDailyR__Daily__0CA5D9DE" FromRole="tblDailyReport" ToRole="tblDailyReportByProject" />
-          <NavigationProperty Name="tblEmployee" Relationship="Self.FK__tblDailyR__Emplo__09C96D33" FromRole="tblDailyReport" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblDailyReportByProjects" Relationship="Self.FK__tblDailyR__Daily__0599B4F3" FromRole="tblDailyReport" ToRole="tblDailyReportByProject" />
+          <NavigationProperty Name="tblEmployee" Relationship="Self.FK__tblDailyR__Emplo__02BD4848" FromRole="tblDailyReport" ToRole="tblEmployee" />
         </EntityType>
         <EntityType Name="tblEmployee">
           <Key>
@@ -599,15 +642,15 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           <Property Name="AccountID" Type="Int32" Nullable="false" />
           <Property Name="ManagerID" Type="Int32" Nullable="false" />
           <Property Name="SectorID" Type="Int32" Nullable="false" />
-          <Property Name="PositionID" Type="Int32" Nullable="false" />
+          <Property Name="PositionID" Type="Int32" />
           <Property Name="EmploymentDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Salary" Type="Int32" />
           <Property Name="QualificationsLevel" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblEmploy__Accou__6C390A4C" FromRole="tblEmployee" ToRole="tblAccount" />
-          <NavigationProperty Name="tblDailyReports" Relationship="Self.FK__tblDailyR__Emplo__09C96D33" FromRole="tblEmployee" ToRole="tblDailyReport" />
-          <NavigationProperty Name="tblManager" Relationship="Self.FK__tblEmploy__Manag__6D2D2E85" FromRole="tblEmployee" ToRole="tblManager" />
-          <NavigationProperty Name="tblPosition" Relationship="Self.FK__tblEmploy__Posit__6F1576F7" FromRole="tblEmployee" ToRole="tblPosition" />
-          <NavigationProperty Name="tblSector" Relationship="Self.FK__tblEmploy__Secto__6E2152BE" FromRole="tblEmployee" ToRole="tblSector" />
+          <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblEmploy__Accou__652CE561" FromRole="tblEmployee" ToRole="tblAccount" />
+          <NavigationProperty Name="tblDailyReports" Relationship="Self.FK__tblDailyR__Emplo__02BD4848" FromRole="tblEmployee" ToRole="tblDailyReport" />
+          <NavigationProperty Name="tblManager" Relationship="Self.FK__tblEmploy__Manag__6621099A" FromRole="tblEmployee" ToRole="tblManager" />
+          <NavigationProperty Name="tblPosition" Relationship="Self.FK__tblEmploy__Posit__6809520C" FromRole="tblEmployee" ToRole="tblPosition" />
+          <NavigationProperty Name="tblSector" Relationship="Self.FK__tblEmploy__Secto__67152DD3" FromRole="tblEmployee" ToRole="tblSector" />
         </EntityType>
         <EntityType Name="tblEmployeeEdit">
           <Key>
@@ -621,10 +664,10 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           <Property Name="EmploymentDate" Type="DateTime" Precision="0" />
           <Property Name="Salary" Type="Int32" />
           <Property Name="QualificationsLevel" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblEmploy__Accou__72E607DB" FromRole="tblEmployeeEdit" ToRole="tblAccount" />
-          <NavigationProperty Name="tblManager" Relationship="Self.FK__tblEmploy__Manag__73DA2C14" FromRole="tblEmployeeEdit" ToRole="tblManager" />
-          <NavigationProperty Name="tblPosition" Relationship="Self.FK__tblEmploy__Posit__75C27486" FromRole="tblEmployeeEdit" ToRole="tblPosition" />
-          <NavigationProperty Name="tblSector" Relationship="Self.FK__tblEmploy__Secto__74CE504D" FromRole="tblEmployeeEdit" ToRole="tblSector" />
+          <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblEmploy__Accou__6BD9E2F0" FromRole="tblEmployeeEdit" ToRole="tblAccount" />
+          <NavigationProperty Name="tblManager" Relationship="Self.FK__tblEmploy__Manag__6CCE0729" FromRole="tblEmployeeEdit" ToRole="tblManager" />
+          <NavigationProperty Name="tblPosition" Relationship="Self.FK__tblEmploy__Posit__6EB64F9B" FromRole="tblEmployeeEdit" ToRole="tblPosition" />
+          <NavigationProperty Name="tblSector" Relationship="Self.FK__tblEmploy__Secto__6DC22B62" FromRole="tblEmployeeEdit" ToRole="tblSector" />
         </EntityType>
         <EntityType Name="tblManager">
           <Key>
@@ -638,11 +681,11 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           <Property Name="NumberOfRealizations" Type="Int32" />
           <Property Name="Salaty" Type="Int32" />
           <Property Name="OfficeNumber" Type="Int32" />
-          <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblManage__Accou__6774552F" FromRole="tblManager" ToRole="tblAccount" />
-          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Manag__6D2D2E85" FromRole="tblManager" ToRole="tblEmployee" />
-          <NavigationProperty Name="tblEmployeeEdits" Relationship="Self.FK__tblEmploy__Manag__73DA2C14" FromRole="tblManager" ToRole="tblEmployeeEdit" />
-          <NavigationProperty Name="tblProjects" Relationship="Self.FK__tblProjec__Manag__02284B6B" FromRole="tblManager" ToRole="tblProject" />
-          <NavigationProperty Name="tblProjects1" Relationship="Self.FK__tblProjec__Manag__041093DD" FromRole="tblManager" ToRole="tblProject" />
+          <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblManage__Accou__60683044" FromRole="tblManager" ToRole="tblAccount" />
+          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Manag__6621099A" FromRole="tblManager" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEmployeeEdits" Relationship="Self.FK__tblEmploy__Manag__6CCE0729" FromRole="tblManager" ToRole="tblEmployeeEdit" />
+          <NavigationProperty Name="tblProjects" Relationship="Self.FK__tblProjec__Manag__7B1C2680" FromRole="tblManager" ToRole="tblProject" />
+          <NavigationProperty Name="tblProjects1" Relationship="Self.FK__tblProjec__Manag__7D046EF2" FromRole="tblManager" ToRole="tblProject" />
         </EntityType>
         <EntityType Name="tblMarrigeStatu">
           <Key>
@@ -650,7 +693,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           </Key>
           <Property Name="MarrigeStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MarrigeStatusName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblAccoun__Marri__61BB7BD9" FromRole="tblMarrigeStatus" ToRole="tblAccount" />
+          <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblAccoun__Marri__5AAF56EE" FromRole="tblMarrigeStatus" ToRole="tblAccount" />
         </EntityType>
         <EntityType Name="tblPosition">
           <Key>
@@ -658,8 +701,8 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           </Key>
           <Property Name="PositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PositionName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Posit__6F1576F7" FromRole="tblPosition" ToRole="tblEmployee" />
-          <NavigationProperty Name="tblEmployeeEdits" Relationship="Self.FK__tblEmploy__Posit__75C27486" FromRole="tblPosition" ToRole="tblEmployeeEdit" />
+          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Posit__6809520C" FromRole="tblPosition" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEmployeeEdits" Relationship="Self.FK__tblEmploy__Posit__6EB64F9B" FromRole="tblPosition" ToRole="tblEmployeeEdit" />
         </EntityType>
         <EntityType Name="tblProject">
           <Key>
@@ -677,10 +720,10 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           <Property Name="Realization" Type="Int32" />
           <Property Name="ManagerRunningID" Type="Int32" Nullable="false" />
           <Property Name="ClientProjectName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblClient" Relationship="Self.FK__tblProjec__Clien__01342732" FromRole="tblProject" ToRole="tblClient" />
-          <NavigationProperty Name="tblManager" Relationship="Self.FK__tblProjec__Manag__02284B6B" FromRole="tblProject" ToRole="tblManager" />
-          <NavigationProperty Name="tblManager1" Relationship="Self.FK__tblProjec__Manag__041093DD" FromRole="tblProject" ToRole="tblManager" />
-          <NavigationProperty Name="tblDailyReportByProjects" Relationship="Self.FK__tblDailyR__Proje__0D99FE17" FromRole="tblProject" ToRole="tblDailyReportByProject" />
+          <NavigationProperty Name="tblClient" Relationship="Self.FK__tblProjec__Clien__7A280247" FromRole="tblProject" ToRole="tblClient" />
+          <NavigationProperty Name="tblManager" Relationship="Self.FK__tblProjec__Manag__7B1C2680" FromRole="tblProject" ToRole="tblManager" />
+          <NavigationProperty Name="tblManager1" Relationship="Self.FK__tblProjec__Manag__7D046EF2" FromRole="tblProject" ToRole="tblManager" />
+          <NavigationProperty Name="tblDailyReportByProjects" Relationship="Self.FK__tblDailyR__Proje__068DD92C" FromRole="tblProject" ToRole="tblDailyReportByProject" />
           <NavigationProperty Name="tblAccounts" Relationship="Self.tblEmployeeOnProject" FromRole="tblProject" ToRole="tblAccount" />
         </EntityType>
         <EntityType Name="tblRequest">
@@ -691,7 +734,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           <Property Name="AccountID" Type="Int32" Nullable="false" />
           <Property Name="Approved" Type="Boolean" />
           <Property Name="RequestDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblReques__Accou__7D63964E" FromRole="tblRequest" ToRole="tblAccount" />
+          <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblReques__Accou__76577163" FromRole="tblRequest" ToRole="tblAccount" />
         </EntityType>
         <EntityType Name="tblSector">
           <Key>
@@ -700,8 +743,8 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           <Property Name="SectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SectorName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="SectorDescription" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Secto__6E2152BE" FromRole="tblSector" ToRole="tblEmployee" />
-          <NavigationProperty Name="tblEmployeeEdits" Relationship="Self.FK__tblEmploy__Secto__74CE504D" FromRole="tblSector" ToRole="tblEmployeeEdit" />
+          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Secto__67152DD3" FromRole="tblSector" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEmployeeEdits" Relationship="Self.FK__tblEmploy__Secto__6DC22B62" FromRole="tblSector" ToRole="tblEmployeeEdit" />
         </EntityType>
         <EntityType Name="tblDailyReportByProject">
           <Key>
@@ -713,10 +756,34 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           <Property Name="ReportDate" Type="DateTime" Precision="0" />
           <Property Name="ReportDescription" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="HoursWorking" Type="Int32" />
-          <NavigationProperty Name="tblDailyReport" Relationship="Self.FK__tblDailyR__Daily__0CA5D9DE" FromRole="tblDailyReportByProject" ToRole="tblDailyReport" />
-          <NavigationProperty Name="tblProject" Relationship="Self.FK__tblDailyR__Proje__0D99FE17" FromRole="tblDailyReportByProject" ToRole="tblProject" />
+          <NavigationProperty Name="tblDailyReport" Relationship="Self.FK__tblDailyR__Daily__0599B4F3" FromRole="tblDailyReportByProject" ToRole="tblDailyReport" />
+          <NavigationProperty Name="tblProject" Relationship="Self.FK__tblDailyR__Proje__068DD92C" FromRole="tblDailyReportByProject" ToRole="tblProject" />
         </EntityType>
-        <Association Name="FK__tblAccoun__Marri__61BB7BD9">
+        <EntityType Name="vwManager">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+            <PropertyRef Name="AccountID" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="JMBG" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="ManagerID" Type="Int32" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JMBG" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ResponsibilityLevel" Type="Int32" />
+          <Property Name="NumberOfRealizations" Type="Int32" />
+          <Property Name="Salaty" Type="Int32" />
+          <Property Name="OfficeNumber" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__tblAccoun__Marri__5AAF56EE">
           <End Role="tblMarrigeStatus" Type="Self.tblMarrigeStatu" Multiplicity="1" />
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="*" />
           <ReferentialConstraint>
@@ -728,7 +795,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblAdmini__Accou__7993056A">
+        <Association Name="FK__tblAdmini__Accou__7286E07F">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="0..1" />
           <End Role="tblAdministrator" Type="Self.tblAdministrator" Multiplicity="*" />
           <ReferentialConstraint>
@@ -740,7 +807,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Accou__6C390A4C">
+        <Association Name="FK__tblEmploy__Accou__652CE561">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -752,7 +819,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Accou__72E607DB">
+        <Association Name="FK__tblEmploy__Accou__6BD9E2F0">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="0..1" />
           <End Role="tblEmployeeEdit" Type="Self.tblEmployeeEdit" Multiplicity="*" />
           <ReferentialConstraint>
@@ -764,7 +831,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblManage__Accou__6774552F">
+        <Association Name="FK__tblManage__Accou__60683044">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="1" />
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="*" />
           <ReferentialConstraint>
@@ -776,7 +843,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblReques__Accou__7D63964E">
+        <Association Name="FK__tblReques__Accou__76577163">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="1" />
           <End Role="tblRequest" Type="Self.tblRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -788,7 +855,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblAdmini__Admin__7A8729A3">
+        <Association Name="FK__tblAdmini__Admin__737B04B8">
           <End Role="tblAdministratorType" Type="Self.tblAdministratorType" Multiplicity="0..1" />
           <End Role="tblAdministrator" Type="Self.tblAdministrator" Multiplicity="*" />
           <ReferentialConstraint>
@@ -800,7 +867,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblProjec__Clien__01342732">
+        <Association Name="FK__tblProjec__Clien__7A280247">
           <End Role="tblClient" Type="Self.tblClient" Multiplicity="1" />
           <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -812,7 +879,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblDailyR__Daily__0CA5D9DE">
+        <Association Name="FK__tblDailyR__Daily__0599B4F3">
           <End Role="tblDailyReport" Type="Self.tblDailyReport" Multiplicity="1" />
           <End Role="tblDailyReportByProject" Type="Self.tblDailyReportByProject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -824,7 +891,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblDailyR__Emplo__09C96D33">
+        <Association Name="FK__tblDailyR__Emplo__02BD4848">
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="1" />
           <End Role="tblDailyReport" Type="Self.tblDailyReport" Multiplicity="*" />
           <ReferentialConstraint>
@@ -836,7 +903,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Manag__6D2D2E85">
+        <Association Name="FK__tblEmploy__Manag__6621099A">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -848,8 +915,8 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Posit__6F1576F7">
-          <End Role="tblPosition" Type="Self.tblPosition" Multiplicity="1" />
+        <Association Name="FK__tblEmploy__Posit__6809520C">
+          <End Role="tblPosition" Type="Self.tblPosition" Multiplicity="0..1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblPosition">
@@ -860,7 +927,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Secto__6E2152BE">
+        <Association Name="FK__tblEmploy__Secto__67152DD3">
           <End Role="tblSector" Type="Self.tblSector" Multiplicity="1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -872,7 +939,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Manag__73DA2C14">
+        <Association Name="FK__tblEmploy__Manag__6CCE0729">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="0..1" />
           <End Role="tblEmployeeEdit" Type="Self.tblEmployeeEdit" Multiplicity="*" />
           <ReferentialConstraint>
@@ -884,7 +951,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Posit__75C27486">
+        <Association Name="FK__tblEmploy__Posit__6EB64F9B">
           <End Role="tblPosition" Type="Self.tblPosition" Multiplicity="0..1" />
           <End Role="tblEmployeeEdit" Type="Self.tblEmployeeEdit" Multiplicity="*" />
           <ReferentialConstraint>
@@ -896,7 +963,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Secto__74CE504D">
+        <Association Name="FK__tblEmploy__Secto__6DC22B62">
           <End Role="tblSector" Type="Self.tblSector" Multiplicity="0..1" />
           <End Role="tblEmployeeEdit" Type="Self.tblEmployeeEdit" Multiplicity="*" />
           <ReferentialConstraint>
@@ -908,7 +975,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblProjec__Manag__02284B6B">
+        <Association Name="FK__tblProjec__Manag__7B1C2680">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="1" />
           <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -920,7 +987,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblProjec__Manag__041093DD">
+        <Association Name="FK__tblProjec__Manag__7D046EF2">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="1" />
           <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -932,7 +999,7 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblDailyR__Proje__0D99FE17">
+        <Association Name="FK__tblDailyR__Proje__068DD92C">
           <End Role="tblProject" Type="Self.tblProject" Multiplicity="1" />
           <End Role="tblDailyReportByProject" Type="Self.tblDailyReportByProject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -963,79 +1030,80 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
           <EntitySet Name="tblRequests" EntityType="Self.tblRequest" />
           <EntitySet Name="tblSectors" EntityType="Self.tblSector" />
           <EntitySet Name="tblDailyReportByProjects" EntityType="Self.tblDailyReportByProject" />
-          <AssociationSet Name="FK__tblAccoun__Marri__61BB7BD9" Association="Self.FK__tblAccoun__Marri__61BB7BD9">
+          <EntitySet Name="vwManagers" EntityType="Self.vwManager" />
+          <AssociationSet Name="FK__tblAccoun__Marri__5AAF56EE" Association="Self.FK__tblAccoun__Marri__5AAF56EE">
             <End Role="tblMarrigeStatus" EntitySet="tblMarrigeStatus" />
             <End Role="tblAccount" EntitySet="tblAccounts" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblAdmini__Accou__7993056A" Association="Self.FK__tblAdmini__Accou__7993056A">
+          <AssociationSet Name="FK__tblAdmini__Accou__7286E07F" Association="Self.FK__tblAdmini__Accou__7286E07F">
             <End Role="tblAccount" EntitySet="tblAccounts" />
             <End Role="tblAdministrator" EntitySet="tblAdministrators" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Accou__6C390A4C" Association="Self.FK__tblEmploy__Accou__6C390A4C">
+          <AssociationSet Name="FK__tblEmploy__Accou__652CE561" Association="Self.FK__tblEmploy__Accou__652CE561">
             <End Role="tblAccount" EntitySet="tblAccounts" />
             <End Role="tblEmployee" EntitySet="tblEmployees" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Accou__72E607DB" Association="Self.FK__tblEmploy__Accou__72E607DB">
+          <AssociationSet Name="FK__tblEmploy__Accou__6BD9E2F0" Association="Self.FK__tblEmploy__Accou__6BD9E2F0">
             <End Role="tblAccount" EntitySet="tblAccounts" />
             <End Role="tblEmployeeEdit" EntitySet="tblEmployeeEdits" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblManage__Accou__6774552F" Association="Self.FK__tblManage__Accou__6774552F">
+          <AssociationSet Name="FK__tblManage__Accou__60683044" Association="Self.FK__tblManage__Accou__60683044">
             <End Role="tblAccount" EntitySet="tblAccounts" />
             <End Role="tblManager" EntitySet="tblManagers" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblReques__Accou__7D63964E" Association="Self.FK__tblReques__Accou__7D63964E">
+          <AssociationSet Name="FK__tblReques__Accou__76577163" Association="Self.FK__tblReques__Accou__76577163">
             <End Role="tblAccount" EntitySet="tblAccounts" />
             <End Role="tblRequest" EntitySet="tblRequests" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblAdmini__Admin__7A8729A3" Association="Self.FK__tblAdmini__Admin__7A8729A3">
+          <AssociationSet Name="FK__tblAdmini__Admin__737B04B8" Association="Self.FK__tblAdmini__Admin__737B04B8">
             <End Role="tblAdministratorType" EntitySet="tblAdministratorTypes" />
             <End Role="tblAdministrator" EntitySet="tblAdministrators" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblProjec__Clien__01342732" Association="Self.FK__tblProjec__Clien__01342732">
+          <AssociationSet Name="FK__tblProjec__Clien__7A280247" Association="Self.FK__tblProjec__Clien__7A280247">
             <End Role="tblClient" EntitySet="tblClients" />
             <End Role="tblProject" EntitySet="tblProjects" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblDailyR__Daily__0CA5D9DE" Association="Self.FK__tblDailyR__Daily__0CA5D9DE">
+          <AssociationSet Name="FK__tblDailyR__Daily__0599B4F3" Association="Self.FK__tblDailyR__Daily__0599B4F3">
             <End Role="tblDailyReport" EntitySet="tblDailyReports" />
             <End Role="tblDailyReportByProject" EntitySet="tblDailyReportByProjects" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblDailyR__Emplo__09C96D33" Association="Self.FK__tblDailyR__Emplo__09C96D33">
+          <AssociationSet Name="FK__tblDailyR__Emplo__02BD4848" Association="Self.FK__tblDailyR__Emplo__02BD4848">
             <End Role="tblEmployee" EntitySet="tblEmployees" />
             <End Role="tblDailyReport" EntitySet="tblDailyReports" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Manag__6D2D2E85" Association="Self.FK__tblEmploy__Manag__6D2D2E85">
+          <AssociationSet Name="FK__tblEmploy__Manag__6621099A" Association="Self.FK__tblEmploy__Manag__6621099A">
             <End Role="tblManager" EntitySet="tblManagers" />
             <End Role="tblEmployee" EntitySet="tblEmployees" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Posit__6F1576F7" Association="Self.FK__tblEmploy__Posit__6F1576F7">
+          <AssociationSet Name="FK__tblEmploy__Posit__6809520C" Association="Self.FK__tblEmploy__Posit__6809520C">
             <End Role="tblPosition" EntitySet="tblPositions" />
             <End Role="tblEmployee" EntitySet="tblEmployees" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Secto__6E2152BE" Association="Self.FK__tblEmploy__Secto__6E2152BE">
+          <AssociationSet Name="FK__tblEmploy__Secto__67152DD3" Association="Self.FK__tblEmploy__Secto__67152DD3">
             <End Role="tblSector" EntitySet="tblSectors" />
             <End Role="tblEmployee" EntitySet="tblEmployees" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Manag__73DA2C14" Association="Self.FK__tblEmploy__Manag__73DA2C14">
+          <AssociationSet Name="FK__tblEmploy__Manag__6CCE0729" Association="Self.FK__tblEmploy__Manag__6CCE0729">
             <End Role="tblManager" EntitySet="tblManagers" />
             <End Role="tblEmployeeEdit" EntitySet="tblEmployeeEdits" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Posit__75C27486" Association="Self.FK__tblEmploy__Posit__75C27486">
+          <AssociationSet Name="FK__tblEmploy__Posit__6EB64F9B" Association="Self.FK__tblEmploy__Posit__6EB64F9B">
             <End Role="tblPosition" EntitySet="tblPositions" />
             <End Role="tblEmployeeEdit" EntitySet="tblEmployeeEdits" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Secto__74CE504D" Association="Self.FK__tblEmploy__Secto__74CE504D">
+          <AssociationSet Name="FK__tblEmploy__Secto__6DC22B62" Association="Self.FK__tblEmploy__Secto__6DC22B62">
             <End Role="tblSector" EntitySet="tblSectors" />
             <End Role="tblEmployeeEdit" EntitySet="tblEmployeeEdits" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblProjec__Manag__02284B6B" Association="Self.FK__tblProjec__Manag__02284B6B">
+          <AssociationSet Name="FK__tblProjec__Manag__7B1C2680" Association="Self.FK__tblProjec__Manag__7B1C2680">
             <End Role="tblManager" EntitySet="tblManagers" />
             <End Role="tblProject" EntitySet="tblProjects" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblProjec__Manag__041093DD" Association="Self.FK__tblProjec__Manag__041093DD">
+          <AssociationSet Name="FK__tblProjec__Manag__7D046EF2" Association="Self.FK__tblProjec__Manag__7D046EF2">
             <End Role="tblManager" EntitySet="tblManagers" />
             <End Role="tblProject" EntitySet="tblProjects" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblDailyR__Proje__0D99FE17" Association="Self.FK__tblDailyR__Proje__0D99FE17">
+          <AssociationSet Name="FK__tblDailyR__Proje__068DD92C" Association="Self.FK__tblDailyR__Proje__068DD92C">
             <End Role="tblProject" EntitySet="tblProjects" />
             <End Role="tblDailyReportByProject" EntitySet="tblDailyReportByProjects" />
           </AssociationSet>
@@ -1204,6 +1272,25 @@ warning 6002: The table/view 'Company.dbo.tblEmployeeOnProject' does not have a 
                 <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
                 <ScalarProperty Name="ReportDescription" ColumnName="ReportDescription" />
                 <ScalarProperty Name="HoursWorking" ColumnName="HoursWorking" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwManagers">
+            <EntityTypeMapping TypeName="CompanyModel.vwManager">
+              <MappingFragment StoreEntitySet="vwManager">
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ResponsibilityLevel" ColumnName="ResponsibilityLevel" />
+                <ScalarProperty Name="NumberOfRealizations" ColumnName="NumberOfRealizations" />
+                <ScalarProperty Name="Salaty" ColumnName="Salaty" />
+                <ScalarProperty Name="OfficeNumber" ColumnName="OfficeNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

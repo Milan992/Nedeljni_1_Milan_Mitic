@@ -39,5 +39,6 @@ namespace WpfCompany.Model
         public virtual DbSet<tblRequest> tblRequests { get; set; }
         public virtual DbSet<tblSector> tblSectors { get; set; }
         public virtual DbSet<tblDailyReportByProject> tblDailyReportByProjects { get; set; }
+        public virtual DbSet<vwManager> vwManagers { get; set; }
     }
 }

@@ -7,7 +7,87 @@
         mc:Ignorable="d"
         Title="Master" Height="450" Width="800">
     <Grid>
-        <Button Content="Add administrator" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120"
-         Command="{Binding AddAdmin, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Add administrator"
+                HorizontalAlignment="Left"
+                Margin="330,10,0,0" VerticalAlignment="Top" 
+                Width="120"
+                Command="{Binding AddAdmin, UpdateSourceTrigger=PropertyChanged}"
+                Height="33"/>
+        <Button Content="Update admin"
+                HorizontalAlignment="Left"
+                Margin="330,50,0,0" VerticalAlignment="Top" 
+                Width="120"
+                Command="{Binding UpdateAdmin, UpdateSourceTrigger=PropertyChanged}"
+                Height="33"/>
+        <Button Content="Manager responsibilities"
+                Command="{Binding ManagerResponsibility, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,10,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Delete account"
+                Command="{Binding DeleteAccount, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="170,10,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Create sector"
+                Command="{Binding CreateSector, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,50,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Delete sector"
+                Command="{Binding DeleteSector, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="170,50,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33"/>
+        <Button Content="Update report"
+                Command="{Binding UpdateReport, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,90,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Update account"
+                Command="{Binding UpdateAccount, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="170,90,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33"/>
+        <Button Content="Create position"
+                Command="{Binding CreatePosition, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,130,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33"/>
+        <Button Content="Delete manager"
+                Command="{Binding DeleteManager, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="170,130,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33"/>
+        <Button Content="Delete project"
+                Command="{Binding DeleteProject, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,170,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33"/>
+        <Button Content="View all projects"
+                Command="{Binding ViewAllProjects, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="170,170,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33"/>
     </Grid>
 </Window>
